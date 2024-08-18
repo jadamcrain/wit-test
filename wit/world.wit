@@ -1,0 +1,40 @@
+package battalion: logic;
+
+interface logging {
+  /// A log level, describing a kind of message.
+  enum level {
+    /// Describes messages about the values of variables and the flow of
+    /// control within a program.
+    trace,
+      /// Describes messages likely to be of interest to someone debugging a
+      /// program.
+    debug,
+      /// Describes messages likely to be of interest to someone monitoring a
+      /// program.
+    info,
+      /// Describes messages indicating hazardous situations.
+    warn,
+      /// Describes messages indicating serious errors.
+    error,
+      /// Describes messages indicating fatal errors.
+    critical,
+  }
+
+  /// Emit a log message
+  log: func(level: level, message: string);
+}
+
+
+interface types {
+  resource totalizer {
+    constructor(a: s64);
+    add: func(a: s64);
+    get: func() -> s64;
+  }
+}
+
+world plugin {
+  export types;
+  import logging;
+}
+
